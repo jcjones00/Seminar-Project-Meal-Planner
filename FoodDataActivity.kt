@@ -13,6 +13,7 @@ class FoodDataActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_food_data)
 
+        // hooks up the recycler view to the custom adapter
         val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
         customAdapter = CustomAdapter(itemsList)
         val layoutManager = LinearLayoutManager(applicationContext)
@@ -22,7 +23,8 @@ class FoodDataActivity : AppCompatActivity() {
     }
 
     private fun prepareItems() {
-        for (i in 0..(dataBase.size - 1)) {
+        // creates a string for each item in the database
+        for (i in dataBase.indices) {
             itemsList.add(dataBase[i].name + ", " + dataBase[i].calorie + " calories, " + dataBase[i].serving + ", " + dataBase[i].type)
         }
         customAdapter.notifyDataSetChanged()
